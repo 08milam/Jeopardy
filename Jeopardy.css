@@ -1,0 +1,78 @@
+
+body{
+    background-image: url(fish-pattern_640.png);
+    background-repeat: repeat;
+}
+
+h1{
+    margin: auto;
+    padding: 5px;
+    width: 200px;
+    text-align: center;
+    color: white;
+    background-color: #5C52B3;
+    border-radius: 5px;
+}
+
+a{
+    top: 10px;
+    left: 20px;
+    padding: 5px;
+    text-decoration: none;
+    color: white;
+    position: absolute;
+    background-color: #5C52B3;
+    border-radius: 5px;
+}
+a:hover{
+    background-color: #7973ad;
+}
+
+#gameBoard{
+    width: max-content;
+    display: grid;
+    grid-template-columns: repeat(6, 150px);
+    margin: 30px auto;
+}
+.categories{
+    margin: 10px;
+    width: 150px;
+    height: 40px;
+    background-color: blue;
+    border: solid 0.3em darkgray;
+    border-bottom-color: #5C52B3;
+    border-right-color: #5C52B3;
+    color: wheat;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: -10px;
+}
+
+
+.questionbox{
+    margin: 10px;
+    width: 150px;
+    height: 130px;
+    background-color: blue;
+    border: solid 0.3em darkgray;
+    border-bottom-color: #5C52B3;
+    border-right-color: #5C52B3;
+    color: wheat;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: -10px;
+}
+
+.questionbox:hover{
+    background-color: #5C52B3;
+    border: solid 0.3em darkgray;
+    border-bottom-color: #726bab;
+    border-right-color: #726bab;
+}
+
+
+
+
+/* Image by <a href="https://pixabay.com/users/monstreh-637659/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=3296033">A K</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=3296033">Pixabay</a> */
