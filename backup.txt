@@ -1,0 +1,237 @@
+function test() {
+  let urltest = ` https://rithm-jeopardy.herokuapp.com/api/category?id=${randomNum()}`;
+
+  fetch(urltest) //retrieving url
+    .then((res) => {
+      //connected pass or fail
+      if (res.ok) {
+        console.log(
+          "API STATUS\n %c successfully connected",
+          "color: green",
+          "✅"
+        );
+      } else {
+        console.log("API STATUS\n %c connection failed", "color: red", "❌");
+      }
+    });
+
+  //creates a random number for id
+  function randomNum() {
+    return Math.floor(Math.random() * 22 + 1);
+  }
+}
+// COMMENT TEST() TO TURN API OFF, UNCOMMENT TEST() TO TURN API ON
+// test();
+//****************************************************************************************************
+
+initCatRow();
+initBoard();
+
+document.querySelector("button").addEventListener("click", buildCategories);
+
+function initCatRow() {
+  let catRow = document.getElementById("categoryrow");
+
+  for (let i = 0; i < 6; i++) {
+    let box = document.createElement("div");
+    box.className = "cluebox categorybox";
+    catRow.appendChild(box);
+  }
+}
+
+function initBoard() {
+  let board = document.getElementById("clueboard");
+
+  for (let i = 0; i < 5; i++) {
+    let row = document.createElement("div");
+    let boxvalue = 200 * (i + 1);
+    row.className = "cluerow";
+
+    for (let j = 0; j < 6; j++) {
+      let box = document.createElement("div");
+      box.className = "cluebox";
+      box.textContent = "$" + boxvalue;
+      box.addEventListener("click", getclue, false);
+      row.appendChild(box);
+    }
+    board.appendChild(row);
+  }
+}
+
+function randomNum() {
+  return Math.floor(Math.random() * 20 + 1);
+}
+
+let catArray = [];
+
+function buildCategories() {
+  const retchRequestOne = fetch(
+    ` https://rithm-jeopardy.herokuapp.com/api/category?id=${randomNum()}`
+  ).then((res) => res.json());
+
+  const retchRequestTwo = fetch(
+    ` https://rithm-jeopardy.herokuapp.com/api/category?id=${randomNum()}`
+  ).then((res) => res.json());
+
+  const retchRequestThree = fetch(
+    ` https://rithm-jeopardy.herokuapp.com/api/category?id=${randomNum()}`
+  ).then((res) => res.json());
+
+  const retchRequestFour = fetch(
+    ` https://rithm-jeopardy.herokuapp.com/api/category?id=${randomNum()}`
+  ).then((res) => res.json());
+
+  const retchRequestfive = fetch(
+    ` https://rithm-jeopardy.herokuapp.com/api/category?id=${randomNum()}`
+  ).then((res) => res.json());
+
+  const retchRequestSix = fetch(
+    ` https://rithm-jeopardy.herokuapp.com/api/category?id=${randomNum()}`
+  ).then((res) => res.json());
+
+  const allData = Promise.all([
+    retchRequestOne,
+    retchRequestTwo,
+    retchRequestThree,
+    retchRequestFour,
+    retchRequestfive,
+    retchRequestSix,
+  ]);
+  allData.then((res) => {
+    console.log(res);
+    catArray = res;
+    setCategories(catArray);
+  });
+}
+
+function setCategories(catArray) {
+  let element = document.getElementById("categoryrow");
+  let children = element.children;
+  for (let i = 0; i < children.length; i++) {
+    children[i].innerHTML = catArray[i].title;
+  }
+}
+
+function getclue(event) {
+  let child = event.currentTarget;
+  child.classList.add("clickedbox");
+  let boxvalue = child.innerHTML.slice(1);
+  let parent = child.parentNode;
+  let index = Array.prototype.findIndex.call(
+    parent.children,
+    (c) => c === child
+  );
+  let cluesList = catArray[index].clues;
+  let clue = cluesList.find((Obj) => {
+    return Obj.value == boxvalue;
+  });
+  showQuestion(clue, child, boxvalue);
+}
+
+function showQuestion(clue, target, boxvalue) {
+  let userAnwser = prompt(clue.question).toLowerCase();
+  let correctAnwser = clue.answer.toLowerCase().replace(/<\/?[^>]+(>|$)/g, "");
+  let points = +boxvalue;
+  target.innerHTML = clue.answer;
+  target.removeEventListener("click", getclue, false);
+  evaluateAnswer(userAnwser, correctAnwser, points);
+}
+
+function evaluateAnswer() {
+  let checkAnwser = userAnwser == correctAnwser ? "correct" : "incorrect";
+  let confirmAnswer = confirm(
+    `for ${points}, you answered "${userAnwser}", and the correct answer was "${correctAnwser}". your anser ${checkAnwser}`
+  );
+  awardPoints(checkAnwser, confirmAnswer, points);
+}
+
+function awardPoints(checkAnwser, confirmAnswer, points) {
+  if (!(checkAnwser == "incorrect" && confirmAnswer == true)) {
+    let target = document.getElementById("score");
+    let currentScore = +target.innerText;
+    currentScore += points;
+    target.innerText = currentScore;
+  } else {
+    alert("no points");
+  }
+}
+
+
+
+
+
+
+
+// creates a randome number for id
+function randomNum() {
+  return Math.floor(Math.random() * 10 + 1);
+}
+
+async function doWork() {
+  try {
+    let url = await fetch(
+      `https://rithm-jeopardy.herokuapp.com/api/category?id=${randomNum()}`
+    );
+    let response = await url.json();
+    console.log("API STATUS\n %c successfully connected", "color: green", "✅");
+    categoryTitle = response.title;
+    return response;
+  } catch (err) {
+    console.log("API STATUS\n %c connection failed", "color: red", "❌", err);
+  }
+
+}
+doWork().then();
+// COMMENT TEST() TO TURN API OFF, UNCOMMENT TEST() TO TURN API ON
+//****************************************************************************************************
+
+
+
+
+
+
+
+
+// creates a randome number for id
+function randomNum() {
+  return Math.floor(Math.random() * 10 + 1);
+}
+
+let url = `https://rithm-jeopardy.herokuapp.com/api/category?id=${randomNum()}`;
+
+async function getData() {
+  try {
+    let response = await fetch(url);
+    let data = await response.json();
+    return data;
+    console.log("API STATUS\n %c successfully connected", "color: green", "✅");
+  } catch (err) {
+    console.log("API STATUS\n %c connection failed", "color: red", "❌", err);
+  }
+}
+getData().then(function(obj) {
+  console.log(obj.title)
+  console.log(obj.clues[0].answer)
+  console.log(obj.clues[0].question)
+
+
+// for (let i = 0; i < 3; i++){
+
+//   console.log(obj.title)
+//   console.log(obj.clues[0].answer)
+//   console.log(obj.clues[0].question)
+// }
+
+
+let cat = [obj, obj, obj, obj, obj]
+console.log(cat)
+
+
+
+});
+// COMMENT TEST() TO TURN API OFF, UNCOMMENT TEST() TO TURN API ON
+//****************************************************************************************************
+
+
+
+
