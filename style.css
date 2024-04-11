@@ -12,10 +12,24 @@ PROGRAMER: Charles Matthew Milam Jr
 /* style.css */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-image: url('background.webp');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
   margin: 0;
-  padding: 0;
 }
+
+.container-content {
+  background-color: rgba(255, 255, 255, 0.143);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);  
+  border-radius: 10px;
+  border: 1px solid whitesmoke;
+}
+
 
 h1 {
   text-align: center;
@@ -32,36 +46,38 @@ h1 {
 #categoryrow {
   display: flex;
   justify-content: space-between;
-  width: 700px; /* Adjust width to fit 7 categories */
+  width: 1200px; 
   margin-bottom: 10px;
 }
 
 .category {
   background-color: #007bff;
-  color: #fff;
+  color: #ffffff;
   text-align: center;
   padding: 10px;
   cursor: pointer;
   width: calc(100% / 7 - 20px); /* Adjust width */
   margin: 0 5px; /* Adjust margin */
+  border-radius: 10px;
 }
 
 #clueboard {
   display: flex;
   flex-wrap: wrap;
-  width: 700px; /* Adjust width to fit 7 columns */
+  width: 1200px; /* Adjust width to fit 7 columns */
   justify-content: space-between; /* Align columns with categories */
 }
 
 .clue {
-  background-color: #f7f7f7;
-  border: 1px solid #ccc;
+  background-color: #5e78fe;
+  border: 1px solid #c9d2ff;
   padding: 10px;
   margin: 5px;
   width: calc(100% / 7 - 20px); /* Adjust width to fit 7 columns */
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  border-radius: 10px;
 }
 
 .clue:hover {
@@ -77,15 +93,17 @@ h1 {
   margin: 20px auto;
   padding: 10px 20px;
   background-color: #4caf50;
+  width: 600px;
   color: #fff;
   border: none;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
+  border-radius: 10px;
 }
 
 #startgame:hover {
-  background-color: #45a049;
+  background-color: #348838;
 }
 
 span {
