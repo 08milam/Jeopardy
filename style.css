@@ -1,0 +1,94 @@
+/* 
+PORJECT NAME: jeopardy 
+FILE: style.html
+DATE: 
+MOD DATE: 
+MOD CHANGES: 
+MOD LINE: 
+VERSION: 0.0.1
+PROGRAMER: Charles Matthew Milam Jr
+ */
+
+/* style.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  color: #333;
+}
+
+#gamecontainer {
+  display: flex;
+  flex-direction: column; /* Change to column */
+  align-items: center; /* Center content horizontally */
+}
+
+#categoryrow {
+  display: flex;
+  justify-content: space-between;
+  width: 700px; /* Adjust width to fit 7 categories */
+  margin-bottom: 10px;
+}
+
+.category {
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  width: calc(100% / 7 - 20px); /* Adjust width */
+  margin: 0 5px; /* Adjust margin */
+}
+
+#clueboard {
+  display: flex;
+  flex-wrap: wrap;
+  width: 700px; /* Adjust width to fit 7 columns */
+  justify-content: space-between; /* Align columns with categories */
+}
+
+.clue {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 5px;
+  width: calc(100% / 7 - 20px); /* Adjust width to fit 7 columns */
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.clue:hover {
+  background-color: #ddd;
+}
+
+.clue.answered {
+  background-color: #ccc;
+}
+
+#startgame {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#startgame:hover {
+  background-color: #45a049;
+}
+
+span {
+  font-weight: bold;
+  margin-right: 5px;
+}
